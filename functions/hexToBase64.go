@@ -1,6 +1,16 @@
 package functions
 
-func HexToBase64(hex string) string {
+import (
+	"encoding/base64"
+	"encoding/hex"
+)
 
-	return ""
+func HexToBase64(hexString string) (*string, error) {
+
+	decodedString, err := hex.DecodeString(hexString)
+	if err != nil {
+		return nil, err
+	}
+	encodedToBase64 := base64.StdEncoding.EncodeToString(decodedString)
+	return &encodedToBase64, nil
 }
